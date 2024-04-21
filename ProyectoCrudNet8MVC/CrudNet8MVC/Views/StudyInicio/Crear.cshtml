@@ -1,0 +1,62 @@
+﻿@*                                                          //Directivas son las que empiezan con un @ seguida
+    //                                                      //    una palabra clave -> @model, @using *@
+@model CrudNet8MVC.Models.Contacto
+@{
+    //                                                      //Bloques de codigo razor.
+    ViewData["Title"] = "Crear nuevo contacto";
+}
+
+
+<hi class="text-center">Contacto con .NET 8 (NET CORE MVC)</hi>
+
+<div class="row">
+    <div class="offset-12">
+        <div class="card border">
+            <div class="card-header bg-dark">
+                <h3 class="text-white"><strong>Crear Usuario</strong></h3>
+            </div>
+            <div class="card-body">
+                @*//                                        //NOTA. Aqui vamos a llamar un Action que se llama "Crear",
+                  //                                        //    y como punto a recalcar, si puede haber 2 metodos
+                  //                                        //    con el mismo nombre, y lo que los diferencia es el 
+                  //                                        //    tipo de Action, en este caso va a invocar el que tenga
+                  //                                        //    el tipo de "POST" y aparte pues el metodo recibe
+                  //                                        //    parametros por lo cual no va a haber errores de 
+                  //                                        //    compilacion.
+                *@
+                <form asp-action="Crear" method="POST">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Nombre" class="control-label"></label>
+                        <input asp-for="Nombre" class="form-control" placeholder="Ingresa el nombre" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Telefono" class="control-label"></label>
+                        <input asp-for="Telefono" class="form-control" placeholder="Ingresa el telefono" />
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Celular" class="control-label"></label>
+                        <input asp-for="Celular" class="form-control" placeholder="Ingresa el celular" />
+                        <span asp-validation-for="Celular" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" placeholder="Ingresa el email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <button type="submit" class="btn btn-secondary d-block mx-auto"><i class="fa fa-user" aria-hidden="true"></i> Crear Usuario</button>
+                    </div>
+                </form>
+
+                <a asp-controller="StudyInicio" asp-action="Index">Volver</a>
+            </div>
+        </div>
+    </div>
+</div>

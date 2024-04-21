@@ -1,6 +1,8 @@
 ﻿using CrudNet8MVC.Datos;
+using CrudNet8MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CrudNet8MVC.Controllers
 {
@@ -51,9 +53,27 @@ namespace CrudNet8MVC.Controllers
                 );
         }
 
+        //--------------------------------------------------------------------------------------------------------------
         [HttpGet]
-        public IActionResult Editar()
+        //                                                  //Este metodo solo sera para mostrar el formulario
+        public IActionResult Crear()
         {
+            return View();
+        }
+
+        //--------------------------------------------------------------------------------------------------------------
+        [HttpPost]
+        //                                                  //Validar token para que de esta manera podamos proternos de
+        //                                                  //    ataques XSS.
+        [ValidateAntiForgeryToken] 
+        //                                                  //Este metodo solo sera para agregar el formulario
+        public IActionResult Crear(Contacto contacto)
+        {
+            if (
+                ModelState.IsValid
+                )
+            {
+            }
             return View();
         }
     }
