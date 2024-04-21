@@ -53,9 +53,17 @@
                                         <td>@Html.DisplayFor(m => item.Email)</td>
                                         <td>@Html.DisplayFor(m => item.FechaCreacion)</td>
                                         <td>
-                                            <a class="btn btn-warning" asp-controller="Inicio" asp-action="Editar" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
-                                            <a class="btn btn-secondary" asp-controller="Inicio" asp-action="Detalle" asp-route-id="@item.Id"><i class="fa fa-info-circle" aria-hidden="true"></i> Detalle</a>
-                                            <a class="btn btn-danger" asp-controller="Inicio" asp-action="Editar" asp-route-id="@item.Id"><i class="fa fa-eraser" aria-hidden="true"></i> Borrar</a>
+                                            @*//            //La siguiente parte de codigo no es necesario
+                                              //            //    ponerlo, ya que al querer hacer referencia 
+                                              //            //    a un metodo de este controlador, esto es
+                                              //            //    redundante.
+                                              //            //    asp-controller="StudyInicio"
+                                              //            //Lo pongo namas para ver que si podemos tambien
+                                              //            //    irnos a otro action de otro controlador.
+                                            *@
+                                            <a class="btn btn-warning" asp-controller="StudyInicio" asp-action="Editar" asp-route-id="@item.Id"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
+                                            <a class="btn btn-secondary" asp-controller="StudyInicio" asp-action="Detalle" asp-route-id="@item.Id"><i class="fa fa-info-circle" aria-hidden="true"></i> Detalle</a>
+                                            <a class="btn btn-danger" asp-controller="StudyInicio" asp-action="Editar" asp-route-id="@item.Id"><i class="fa fa-eraser" aria-hidden="true"></i> Borrar</a>
                                         </td>
                                     </tr>
                                 }

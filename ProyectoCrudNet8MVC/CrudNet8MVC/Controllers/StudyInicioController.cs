@@ -67,14 +67,26 @@ namespace CrudNet8MVC.Controllers
         //                                                  //    ataques XSS.
         [ValidateAntiForgeryToken] 
         //                                                  //Este metodo solo sera para agregar el formulario
-        public IActionResult Crear(Contacto contacto)
+        public async Task<IActionResult> Crear(Contacto contacto)
         {
             if (
                 ModelState.IsValid
                 )
             {
+                contacto.FechaCreacion = DateTime.Now;
+
+                _contexto.Contacto.Add(contacto);
+                await _contexto.SaveChangesAsync();
+
+                //                                          //Forma 1 de redireccionar
+                //return RedirectToAction("Index");
+                //                                          //Forma 2 de redireccionar
+                return RedirectToAction(nameof(Index));
             }
             return View();
         }
+
+        
+
     }
 }
