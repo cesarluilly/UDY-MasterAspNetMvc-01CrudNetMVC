@@ -50,5 +50,11 @@ namespace CrudNet8MVC.Controllers
             return View(await this._contexto.Contacto.ToListAsync()
                 );
         }
+
+        [HttpGet]
+        public IActionResult Editar()
+        {
+            return View();
+        }
     }
 }
