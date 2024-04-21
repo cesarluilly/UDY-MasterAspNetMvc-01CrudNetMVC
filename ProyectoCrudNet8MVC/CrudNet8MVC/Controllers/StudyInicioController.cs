@@ -86,7 +86,50 @@ namespace CrudNet8MVC.Controllers
             return View();
         }
 
-        
+        //--------------------------------------------------------------------------------------------------------------
+        [HttpPost]
+        //                                                  //Validar token para que de esta manera podamos proternos de
+        //                                                  //    ataques XSS.
+        [ValidateAntiForgeryToken]
+        //                                                  //Este metodo solo sera para agregar el formulario
+        public async Task<IActionResult> Editar(Contacto contacto)
+        {
+            if (
+                ModelState.IsValid
+                )
+            {
+                _contexto.Contacto.Update(contacto);
+                await _contexto.SaveChangesAsync();
+
+                //                                          //Forma 1 de redireccionar
+                //return RedirectToAction("Index");
+                //                                          //Forma 2 de redireccionar
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
+
+        //--------------------------------------------------------------------------------------------------------------
+        [HttpGet]
+        //                                                  //Este metodo solo sera para mostrar el formulario
+        public IActionResult Editar(int? id)
+        {
+            if (
+                id == null
+                )
+            {
+                return NotFound();
+            }
+
+            Contacto contacto = _contexto.Contacto.Find(id);
+
+            if (contacto == null)
+            {
+                return NotFound();
+            }
+
+            return View(contacto);
+        }
 
     }
 }
