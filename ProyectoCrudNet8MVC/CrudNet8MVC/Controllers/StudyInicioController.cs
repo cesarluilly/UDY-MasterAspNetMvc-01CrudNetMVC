@@ -131,5 +131,26 @@ namespace CrudNet8MVC.Controllers
             return View(contacto);
         }
 
+        //--------------------------------------------------------------------------------------------------------------
+        [HttpGet]
+        //                                                  //Este metodo solo sera para mostrar el formulario
+        public IActionResult Detalle(int? id)
+        {
+            if (
+                id == null
+                )
+            {
+                return NotFound();
+            }
+
+            Contacto contacto = _contexto.Contacto.Find(id);
+
+            if (contacto == null)
+            {
+                return NotFound();
+            }
+
+            return View(contacto);
+        }
     }
 }
