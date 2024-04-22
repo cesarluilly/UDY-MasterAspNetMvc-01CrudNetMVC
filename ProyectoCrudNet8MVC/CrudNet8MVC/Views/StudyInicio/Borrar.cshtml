@@ -3,7 +3,7 @@
 @model CrudNet8MVC.Models.Contacto
 @{
     //                                                      //Bloques de codigo razor.
-    ViewData["Title"] = "Editar Contacto";
+    ViewData["Title"] = "Borrar Contacto";
 }
 
 
@@ -13,43 +13,43 @@
     <div class="offset-12">
         <div class="card border">
             <div class="card-header bg-dark">
-                <h3 class="text-white"><strong>Editar Usuario</strong></h3>
+                <h3 class="text-white"><strong>Borrar Usuario</strong></h3>
             </div>
             <div class="card-body">
-                @*//                                        //Por defecto tiene el method GET, aunque 
-                  //                                        //    no lo especifiquemos.
+                @*//                                        //Por defecto tiene el method GET, aunque
+                //                                        //    no lo especifiquemos.
                 *@
-                <form asp-action="Editar">
+                <form asp-action="Borrar">
                     @*//                                    //Id del usuario como campo oculto*@
-                    <input type="hidden" asp-for="Id"/>
+                    <input type="hidden" asp-for="Id" />
 
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="Nombre" class="control-label"></label>
-                        <input asp-for="Nombre" class="form-control" placeholder="Ingresa el nombre" />
+                        <input asp-for="Nombre" class="form-control" readonly />
                         <span asp-validation-for="Nombre" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         <label asp-for="Telefono" class="control-label"></label>
-                        <input asp-for="Telefono" class="form-control" placeholder="Ingresa el telefono" />
+                        <input asp-for="Telefono" class="form-control" readonly />
                         <span asp-validation-for="Telefono" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         <label asp-for="Celular" class="control-label"></label>
-                        <input asp-for="Celular" class="form-control" placeholder="Ingresa el celular" />
+                        <input asp-for="Celular" class="form-control" readonly />
                         <span asp-validation-for="Celular" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         <label asp-for="Email" class="control-label"></label>
-                        <input asp-for="Email" class="form-control" placeholder="Ingresa el email" />
+                        <input asp-for="Email" class="form-control" readonly />
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
 
                     <div class="form-group mt-3">
-                        <button type="submit" class="btn btn-secondary d-block mx-auto"><i class="fa fa-user" aria-hidden="true"></i> Editar Usuario</button>
+                        <button type="submit" class="btn btn-success d-block mx-auto"><i class="fa fa-user" aria-hidden="true"></i> Borrar Usuario</button>
                     </div>
                 </form>
 

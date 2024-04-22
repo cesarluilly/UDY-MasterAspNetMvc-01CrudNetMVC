@@ -87,6 +87,28 @@ namespace CrudNet8MVC.Controllers
         }
 
         //--------------------------------------------------------------------------------------------------------------
+        [HttpGet]
+        //                                                  //Este metodo solo sera para mostrar el formulario
+        public IActionResult Editar(int? id)
+        {
+            if (
+                id == null
+                )
+            {
+                return NotFound();
+            }
+
+            Contacto contacto = _contexto.Contacto.Find(id);
+
+            if (contacto == null)
+            {
+                return NotFound();
+            }
+
+            return View(contacto);
+        }
+
+        //--------------------------------------------------------------------------------------------------------------
         [HttpPost]
         //                                                  //Validar token para que de esta manera podamos proternos de
         //                                                  //    ataques XSS.
@@ -112,7 +134,7 @@ namespace CrudNet8MVC.Controllers
         //--------------------------------------------------------------------------------------------------------------
         [HttpGet]
         //                                                  //Este metodo solo sera para mostrar el formulario
-        public IActionResult Editar(int? id)
+        public IActionResult Detalle(int? id)
         {
             if (
                 id == null
@@ -133,8 +155,8 @@ namespace CrudNet8MVC.Controllers
 
         //--------------------------------------------------------------------------------------------------------------
         [HttpGet]
-        //                                                  //Este metodo solo sera para mostrar el formulario
-        public IActionResult Detalle(int? id)
+        //                                                  //Este metodo solo sera para mostrar la vista
+        public IActionResult Borrar(int? id)
         {
             if (
                 id == null
@@ -151,6 +173,29 @@ namespace CrudNet8MVC.Controllers
             }
 
             return View(contacto);
+        }
+
+        //--------------------------------------------------------------------------------------------------------------
+        [HttpPost, ActionName("Borrar")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> BorrarContactoYPuedeSerCualquierNombre(int? Id)
+        {
+            Contacto contacto = await _contexto.Contacto.FindAsync(Id);
+
+            if (
+                contacto == null
+                )
+            {
+                return View();
+            }
+
+            _contexto.Contacto.Remove(contacto);
+            await _contexto.SaveChangesAsync();
+
+            //                                          //Forma 1 de redireccionar
+            //return RedirectToAction("Index");
+            //                                          //Forma 2 de redireccionar
+            return RedirectToAction(nameof(Index));
         }
     }
 }
